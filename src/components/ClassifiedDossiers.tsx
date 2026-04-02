@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// === 📂 LIN WAN 圖片匯入區 ===
-// (如果 Lin Wan 有更多圖片，請依照下面的格式繼續往下加)
+// === 📂 SUBJECT_01: LIN WAN 圖片匯入區 (14張) ===
 import linComic1 from '../lin_comic_1.jpg';
 import linComic2 from '../lin_comic_2.jpg';
+import linComic3 from '../lin_comic_3.jpg';
+import linComic4 from '../lin_comic_4.jpg';
+import linComic5 from '../lin_comic_5.jpg';
+import linComic6 from '../lin_comic_6.jpg';
+import linComic7 from '../lin_comic_7.jpg';
+import linComic8 from '../lin_comic_8.jpg';
+import linComic9 from '../lin_comic_9.jpg';
+import linComic10 from '../lin_comic_10.jpg';
+import linComic11 from '../lin_comic_11.jpg';
+import linComic12 from '../lin_comic_12.jpg';
+import linComic13 from '../lin_comic_13.jpg';
+import linComic14 from '../lin_comic_14.jpg';
 
 const linComics = [
-  linComic1, 
-  linComic2
+  linComic1, linComic2, linComic3, linComic4, linComic5,
+  linComic6, linComic7, linComic8, linComic9, linComic10,
+  linComic11, linComic12, linComic13, linComic14
 ];
 
 // === 📂 RICK 圖片匯入區 ===
