@@ -1,7 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from '@google/genai';
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 type Message = {
   role: 'user' | 'model';
@@ -10,25 +7,16 @@ type Message = {
 
 export default function Chatbot({ onHackingMode, onCallingMode, onUploadingMode }: { onHackingMode: () => void, onCallingMode: () => void, onUploadingMode: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: 'AEGIS_ASSISTANT online. How may I assist you with the decryption process?' }
+    { role: 'model', text: 'AEGIS_ASSISTANT online. Awaiting encrypted directives.' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const chatRef = useRef<any>(null);
 
+  // 讓聊天框永遠自動捲動到最新訊息
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  useEffect(() => {
-    chatRef.current = ai.chats.create({
-      model: 'gemini-3-flash-preview',
-      config: {
-        systemInstruction: 'You are AEGIS_ASSISTANT, an AI terminal assistant in a cyberpunk world. You help the user understand the "Project Icarus: The Chained Dragon" logs. Keep your responses concise, slightly robotic, and themed around hacking, decryption, and data analysis. Use monospaced-style formatting or code blocks where appropriate.',
-      }
-    });
-  }, []);
 
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -36,6 +24,7 @@ export default function Chatbot({ onHackingMode, onCallingMode, onUploadingMode 
 
     const userText = input.trim();
     
+    // --- 🎭 彩蛋觸發區 ---
     if (userText.toLowerCase() === 'aegis model') {
       setInput('');
       onHackingMode();
@@ -54,19 +43,25 @@ export default function Chatbot({ onHackingMode, onCallingMode, onUploadingMode 
       return;
     }
 
+    // --- 💬 一般訊息處理 ---
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userText }]);
     setIsLoading(true);
 
-    try {
-      const response = await chatRef.current.sendMessage({ message: userText });
-      setMessages(prev => [...prev, { role: 'model', text: response.text }]);
-    } catch (error) {
-      console.error('Chat error:', error);
-      setMessages(prev => [...prev, { role: 'model', text: 'ERR: CONNECTION TO AEGIS_CORE FAILED.' }]);
-    } finally {
+    // 模擬駭客系統處理時間 (0.8秒)，然後給出隨機的終端機罐頭回覆
+    setTimeout(() => {
+      const genericResponses = [
+        "ERR_403: COMMAND NOT RECOGNIZED. PLEASE INPUT A VALID DIRECTIVE.",
+        "AEGIS_CORE: ACCESS DENIED. INSUFFICIENT CLEARANCE LEVEL.",
+        "SYSTEM LOG: USER INPUT RECORDED. WAITING FOR S-CLASS OVERRIDE.",
+        "DATA_NODE: SYNTAX ERROR. PLEASE REFER TO PROJECT_REBOOT PROTOCOL.",
+        "WARNING: UNKNOWN INPUT. CONNECTION IS BEING MONITORED BY REYA_SECURITY."
+      ];
+      const randomResponse = genericResponses[Math.floor(Math.random() * genericResponses.length)];
+      
+      setMessages(prev => [...prev, { role: 'model', text: randomResponse }]);
       setIsLoading(false);
-    }
+    }, 800);
   };
 
   return (
@@ -108,7 +103,7 @@ export default function Chatbot({ onHackingMode, onCallingMode, onUploadingMode 
         <button 
           type="submit" 
           disabled={isLoading || !input.trim()}
-          className="px-3 py-1 border border-[#00f3ff]/50 hover:bg-[#00f3ff]/20 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+          className="px-3 py-1 border border-[#00f3ff]/50 hover:bg-[#00f3ff]/20 disabled:opacity-50 disabled:hover:bg-transparent transition-colors font-bold"
         >
           [SEND]
         </button>
