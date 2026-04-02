@@ -109,11 +109,10 @@ export default function PhoneCallEasterEgg({ onClose }: PhoneCallEasterEggProps)
       <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-50 font-sans text-gray-900">
         <div className="w-full max-w-sm px-6 flex flex-col items-center">
           
-          {/* 修改 2：加上實體的白色背景框和陰影，確保螢幕區塊永遠可見 */}
-          <div className="h-24 w-full flex items-center justify-center mb-10 bg-white rounded-xl shadow-sm border border-gray-200">
-            {/* 強制設定 text-black 確保字體絕對是黑色的 */}
-            <div className="text-4xl tracking-widest font-light text-center break-all text-black">
-              {phoneNumber || '\u00A0'} {/* \u00A0 確保即使沒打字，框框也不會塌陷 */}
+          {/* 顯示螢幕：移除邊框，僅保留黑色字體與高度支撐 */}
+          <div className="h-24 w-full flex items-center justify-center mb-10">
+            <div className="text-4xl tracking-widest font-light text-center break-all text-gray-900">
+              {phoneNumber || '\u00A0'}
             </div>
           </div>
 
