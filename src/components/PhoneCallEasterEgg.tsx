@@ -197,5 +197,3 @@ export default function PhoneCallEasterEgg({ onClose }: PhoneCallEasterEggProps)
   );
 }
 
-
-按照原版的改
