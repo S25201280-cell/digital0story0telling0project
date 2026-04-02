@@ -1,18 +1,40 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// === 🚨 請在這裡匯入你的多張圖片 🚨 ===
-// (如果你的圖片附檔名是 .png，記得改成 .png)
-import linComic1 from '../lin_comic_1.jpg'; // Lin Wan 漫畫第 1 頁
-import linComic2 from '../lin_comic_2.jpg'; // Lin Wan 漫畫第 2 頁
-// import linComic3 from '../lin_comic_3.jpg'; // 依此類推...
+// === 📂 LIN WAN 圖片匯入區 ===
+// (如果 Lin Wan 有更多圖片，請依照下面的格式繼續往下加)
+import linComic1 from '../lin_comic_1.jpg';
+import linComic2 from '../lin_comic_2.jpg';
 
-import rickComic1 from '../rick_comic_1.jpg'; // Rick 漫畫第 1 頁
-import rickComic2 from '../rick_comic_2.jpg'; // Rick 漫畫第 2 頁
+const linComics = [
+  linComic1, 
+  linComic2
+];
 
-// 建立圖片陣列
-const linComics = [linComic1, linComic2]; // 如果有第三張就加進去：[linComic1, linComic2, linComic3]
-const rickComics = [rickComic1, rickComic2];
+// === 📂 RICK 圖片匯入區 ===
+// (如果你的圖片附檔名是 .png，記得把它們改成 .png)
+import rickComic1 from '../rick_comic_1.jpg';
+import rickComic2 from '../rick_comic_2.jpg';
+import rickComic3 from '../rick_comic_3.jpg';
+import rickComic4 from '../rick_comic_4.jpg';
+import rickComic5 from '../rick_comic_5.jpg';
+import rickComic6 from '../rick_comic_6.jpg';
+import rickComic7 from '../rick_comic_7.jpg';
+import rickComic8 from '../rick_comic_8.jpg';
+import rickComic9 from '../rick_comic_9.jpg';
+import rickComic10 from '../rick_comic_10.jpg';
+import rickComic11 from '../rick_comic_11.jpg';
+import rickComic12 from '../rick_comic_12.jpg';
+import rickComic13 from '../rick_comic_13.jpg';
+import rickComic14 from '../rick_comic_14.jpg';
+import rickComic15 from '../rick_comic_15.jpg';
+
+// 💡 關鍵在這裡：必須把上面 import 的變數，全部放進這個陣列裡！
+const rickComics = [
+  rickComic1, rickComic2, rickComic3, rickComic4, rickComic5,
+  rickComic6, rickComic7, rickComic8, rickComic9, rickComic10,
+  rickComic11, rickComic12, rickComic13, rickComic14, rickComic15
+];
 
 interface ClassifiedDossiersProps {
   onClose: () => void;
